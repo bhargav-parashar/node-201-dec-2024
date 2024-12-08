@@ -1,0 +1,13 @@
+GET http://localhost:8082
+### products -> (endpoint or resource name)
+GET http://localhost:8082/products 
+###
+GET http://localhost:8082/users/1234/posts/5678
+###
+GET http://localhost:8082/currencies
+###
+# GET http://localhost:8082/currencies?min_value=0.01&max_value=2000
+###
+GET http://localhost:8082/currencies?min_value=1
+###
+GET http://localhost:8082/currencies/inr
