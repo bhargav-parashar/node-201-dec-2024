@@ -30,8 +30,19 @@ POST http://localhost:8082/blogs/new
 Content-Type: application/json
 
 {
-    "title": "Dehradun"
+    "content": "Darjeeling"
 }
 ###
 GET  http://localhost:8082/blogs
 ###
+GET  http://localhost:8082/blogs/675da835154a3589642f7bd4
+###
+PATCH  http://localhost:8082/blogs/675da835154a3589642f7bdf
+Content-Type: application/json
+
+{
+    "content": "Famous for its tea"
+}
+
+###
+DELETE  http://localhost:8082/blogs/675da835154a3589642f7bd4

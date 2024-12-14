@@ -26,4 +26,12 @@ const queryValidator = (schema) => (req, res, next) => {
 //   next();
 // };
 
-module.exports = { queryValidator };
+const documentIdValidator = (req, res, next) => {
+  const { id } = req.params;
+  const regex = new RegExp(/^[a-fA-F0-9]{24}$/);
+  if (!regex.test(id))
+    return res.status(400).send({ message: "Id is invalid" });
+  next();
+};
+
+module.exports = { queryValidator, documentIdValidator };
