@@ -54,3 +54,11 @@ Content-Type: application/json
 
 ###
 DELETE  http://localhost:8082/blogs/675da835154a3589642f7bd4
+###
+GET  http://localhost:8082/blogs/search?title=va&author=vivek@resuminator.in
+###
+GET  http://localhost:8082/blogs/search?title=m
+###
+GET  http://localhost:8082/blogs/search?author=vivek@resuminator.in
+###
+GET  http://localhost:8082/blogs/search

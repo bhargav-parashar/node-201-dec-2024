@@ -5,12 +5,18 @@ const {
   getBlogById,
   updateBlogById,
   deleteBlogById,
+  searchBlogs,
 } = require("../controllers/blogs.controllers");
-const { documentIdValidator } = require("../middlewares/validate");
+const {
+  queryValidator,
+  documentIdValidator,
+} = require("../middlewares/validate");
 const findBlogByIdAndAttach = require("../middlewares/findByIdAndAttach");
+const { blogSearchSchema } = require("../validations/blogs.validations");
 
 router.post("/new", createBlog);
 router.get("/", getAllBlogs);
+router.get("/search", queryValidator(blogSearchSchema), searchBlogs);
 
 router
   .route("/:id")

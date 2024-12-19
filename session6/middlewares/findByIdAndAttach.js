@@ -1,8 +1,9 @@
-const Blog = require("../models/blog.model");
+const BlogService = require("../services/blogs.service");
+const BlogServiceInstance = new BlogService();
 
 const findBlogByIdAndAttach = async (req, res, next) => {
   const { id } = req.params;
-  const reqBlog = await Blog.findById(id);
+  const reqBlog = await BlogServiceInstance.getById(id);
   if (!reqBlog)
     return res
       .status(404)
