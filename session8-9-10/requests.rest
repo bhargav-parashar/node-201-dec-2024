@@ -1,0 +1,8 @@
+POST http://localhost:8082/auth/signup
+Content-Type: application/json
+
+{
+    "email": "kb9@ittihad.com",
+    "username": "kb9",
+    "password": "KB9@bestStriker"
+}
