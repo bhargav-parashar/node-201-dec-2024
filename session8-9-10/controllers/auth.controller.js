@@ -14,10 +14,34 @@ const postSignup = async (req, res) => {
     });
     res.status(201).send(newUser);
   } catch (error) {
+    if (error.code === 11000)
+      return res.status(409).send({
+        message: `A user with this ${
+          Object.keys(error.keyValue)[0]
+        } already exists.`,
+      });
+    if (error.name === "ValidationError")
+      return res.status(400).send({
+        message: error.message,
+      });
     res.status(500).send({ message: "Something went wrong", error });
   }
 };
 
-const postLogin = (req, res) => {};
+const postLogin = async (req, res) => {
+  try {
+    const reqUser = await UserServiceInstance.findByUsername(req.body.username);
+    const result = await AuthServiceInstance.comparePasswordHash(
+      req.body.password,
+      reqUser.password
+    );
+    if (result) return res.status(200).send({ isLoggedIn: true });
+    res.status(401).send({ message: "Password is incorrect" });
+  } catch (error) {
+    if (error.message === "User not found")
+      return res.status(404).send({ message: error.message });
+    res.status(500).send({ message: "Something went wrong", error });
+  }
+};
 
 module.exports = { postSignup, postLogin };

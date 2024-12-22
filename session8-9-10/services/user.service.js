@@ -20,7 +20,8 @@ class UserService {
   findByUsername = async (username) => {
     try {
       const userResult = await Users.findOne({ username });
-      return userResult;
+      if (userResult) return userResult;
+      throw new Error("User not found");
     } catch (error) {
       throw error;
     }
