@@ -31,11 +31,21 @@ const postSignup = async (req, res) => {
 const postLogin = async (req, res) => {
   try {
     const reqUser = await UserServiceInstance.findByUsername(req.body.username);
-    const result = await AuthServiceInstance.comparePasswordHash(
+    const isLoggedIn = await AuthServiceInstance.comparePasswordHash(
       req.body.password,
       reqUser.password
     );
-    if (result) return res.status(200).send({ isLoggedIn: true });
+
+    if (isLoggedIn) {
+      const token = AuthServiceInstance.generateJwt({ userId: reqUser._id });
+      return res
+        .status(200)
+        .cookie("remember-user-token", token, {
+          maxAge: 200000,
+          httpOnly: true,
+        })
+        .send({ isLoggedIn });
+    }
     res.status(401).send({ message: "Password is incorrect" });
   } catch (error) {
     if (error.message === "User not found")
