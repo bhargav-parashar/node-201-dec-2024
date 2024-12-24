@@ -14,3 +14,6 @@ Content-Type: application/json
     "username": "kb9",
     "password": "KB9@bestStriker"
 }
+###
+GET http://localhost:8082/user/cena
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NzY3ZTYwZDNmMjA3MTFlNWRkODFiNjIiLCJpYXQiOjE3MzUwNjE2MDEsImV4cCI6MTczNTA2MjUwMX0.4ml4fomAP0SWRYBQmQe8WPyCqVy_Ud04iDtIPgHsCnk

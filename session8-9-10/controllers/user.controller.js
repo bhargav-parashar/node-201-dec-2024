@@ -20,6 +20,10 @@ const postRegister = async (req, res) => {
 const getUserByUsername = async (req, res) => {
   try {
     const { username } = req.params;
+    if (req.user.username !== username)
+      return res
+        .status(403)
+        .send({ message: "You cannot access this resource." });
     const userResult = await UserServiceInstance.findByUsername(username);
     if (userResult) {
       res.json(userResult);

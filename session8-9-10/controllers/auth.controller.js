@@ -41,7 +41,7 @@ const postLogin = async (req, res) => {
       return res
         .status(200)
         .cookie("remember-user-token", token, {
-          maxAge: 200000,
+          maxAge: 15 * 60 * 1000,
           httpOnly: true,
         })
         .send({ isLoggedIn });
